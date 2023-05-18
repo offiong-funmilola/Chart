@@ -7,8 +7,6 @@ import {invoices} from '../data'
 import './chart.css'
 
 function Barchart() {
-    // let minDataValue = Math.min(mostNegativeValue, options.suggestedMin);
-    // let maxDataValue = Math.max(mostPositiveValue, options.suggestedMax);
   return (
     <div className='wrapper'>
         <div className='bar-wrapper'>
@@ -18,40 +16,81 @@ function Barchart() {
                     datasets: [{
                         label: 'internal Invoices',
                         data : invoices.map(data => data.internal),
-                        fill: false,
-                        backgroundColor: 'rgb(0, 81, 255)',
-                        borderSkipped: true
+                        fill: true,
+                        backgroundColor: 'rgba(0, 81, 255, 0.8)',
+                        borderSkipped: true,
                         },
                         {
                         label: 'external Invoices',
                         data : invoices.map(data =>  data.external),
-                        fill: false,
+                        fill: true,
                         backgroundColor: 'rgba(255, 166, 0, 0.966)',
-                        borderSkipped: true
-
                         }
                     ]
-
                 }}
-                width={500}
-                height={300}
+                
+                width= {600}
+                height= {600}
+               
                 options = {{
                     maintainAspectRatio: false,
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                          position: 'top',
+                          align: 'end',
+                            display: true,
+                          labels: {
+                            boxWidth: 20,
+                            boxHeight: 20,
+                            usePointStyle: true,
+                            pointStyleWidth: 20,
+                            useBorderRadius: true,
+                            pointStyle: 'circle',
+                            lineWidth: 10,
+                            font: {
+                                size: 12,
+                            }
+                          }
+                        },
+                        title: {
+                          display: true,
+                          text:'Monthly invoice distribution',
+                          position: 'top',
+                          align: 'start',
+                          font : {
+                            size: 23, 
+                          },
+                          color: 'rgba(9, 9, 103, 0.7)',
+                        },
+                        subtitle: {
+                            display: true,
+                            text: 'Track your invoice flow for any given period',
+                            position: 'top',
+                            align: 'start',
+                            font : {
+                                size: 16, 
+                              },
+                        }
+                        
+                    },
                     scales: {
                         y: {
                             max: 50,
+                            
                             ticks: {
-                                beginAtZero: true
+                                beginAtZero: true,
+                                
                             }
                         }
                     },
-                    legend: {
-                        labels: {
-                           position: 'end',
-                           boxWidth: 40,
-                           boxHeight: 40,    
-                        }
-                    }
+                    // legend: {
+                    //     labels: {
+                    //        position: 'end',
+                    //        boxWidth: 40,
+                    //        boxHeight: 40,    
+                    //     }
+                    // }
                 }}
                 
             />
